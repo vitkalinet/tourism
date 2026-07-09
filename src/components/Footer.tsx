@@ -1,5 +1,3 @@
-"use client";
-
 import styles from "./Footer.module.scss";
 
 export default function Footer() {
@@ -41,12 +39,12 @@ export default function Footer() {
             <h4 className={styles.linkGroupTitle}>Связаться</h4>
             <div className={styles.socialLinks}>
               <a
-                href="https://wa.me/79001234567"
+                href="https://max.ru/79001234567"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialLink}
               >
-                WhatsApp
+                Max
               </a>
               <a
                 href="https://t.me/zurgan"

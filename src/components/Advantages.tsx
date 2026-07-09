@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useInView } from "@/hooks/useInView";
 import styles from "./Advantages.module.scss";
 
 const advantages = [
@@ -37,36 +37,19 @@ const advantages = [
 ];
 
 export default function Advantages() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useInView<HTMLElement>(styles.visible, 0.1);
 
   return (
     <section ref={sectionRef} id="advantages" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
           <span className={styles.sectionTag}>Почему я</span>
-          <h2 className={styles.sectionTitle}>Преимущества путешествия со мной</h2>
+          <h2 className={styles.sectionTitle}>
+            Преимущества путешествия со мной
+          </h2>
           <p className={styles.sectionDesc}>
-            Каждый элемент экскурсии продуман для вашего комфорта и незабываемых впечатлений
+            Каждый элемент экскурсии продуман для вашего комфорта и незабываемых
+            впечатлений
           </p>
         </div>
 

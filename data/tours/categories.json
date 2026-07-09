@@ -1,0 +1,7 @@
+[
+  { "id": "all", "label": "Все экскурсии" },
+  { "id": "culture", "label": "Культура" },
+  { "id": "nature", "label": "Природа" },
+  { "id": "adventure", "label": "Приключения" },
+  { "id": "wellness", "label": "Оздоровление" }
+]

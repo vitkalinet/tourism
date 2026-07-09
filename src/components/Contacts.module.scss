@@ -17,7 +17,7 @@
 
 .sectionTag {
   display: inline-block;
-  font-family: var(--font-unbounded), sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 0.7rem;
   font-weight: 300;
   letter-spacing: 0.2em;
@@ -75,11 +75,11 @@
   }
 
   &.whatsapp {
-    border-color: rgba(37, 211, 102, 0.3);
+    border-color: rgba(59, 109, 181, 0.3);
 
     &:hover {
-      border-color: #25d366;
-      background: rgba(37, 211, 102, 0.05);
+      border-color: var(--blue-light);
+      background: rgba(59, 109, 181, 0.05);
     }
   }
 }
@@ -90,7 +90,7 @@
 }
 
 .contactName {
-  font-family: var(--font-unbounded), sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 0.8rem;
   font-weight: 300;
   letter-spacing: 0.08em;
@@ -138,11 +138,11 @@
 .formInput,
 .formTextarea {
   width: 100%;
-  background: var(--bg);
+  background: var(--bg3);
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
   padding: 0.9rem 1.2rem;
-  font-family: var(--font-geologica), sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 0.95rem;
   font-weight: 300;
   color: var(--text);
@@ -164,11 +164,11 @@
 }
 
 .formSubmit {
-  font-family: var(--font-unbounded), sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 0.85rem;
   font-weight: 300;
   letter-spacing: 0.08em;
-  color: var(--bg);
+  color: var(--btn-text);
   background: linear-gradient(135deg, var(--gold2), var(--gold));
   border: none;
   padding: 1rem 2rem;

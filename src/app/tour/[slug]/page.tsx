@@ -1,44 +1,17 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTourBySlug, tours } from "@/data/tours";
+import {
+  imageMapLarge,
+  imageMapSmall,
+  defaultImageLarge,
+  defaultImageSmall,
+} from "@/data/images";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import styles from "./TourPage.module.scss";
 
-const imageMap: Record<string, string> = {
-  khurul:
-    "https://images.unsplash.com/photo-1545378892-f16a1c3dfa1d?w=1920&q=80",
-  "elista-walk":
-    "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?w=1920&q=80",
-  topol:
-    "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1920&q=80",
-  "palmov-museum":
-    "https://images.unsplash.com/photo-1586348943529-beaae6c28fd9?w=1920&q=80",
-  "dunes-saigas":
-    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80",
-  "nomads-camels":
-    "https://images.unsplash.com/photo-1553678877-868445459655?w=1920&q=80",
-  "horse-riding":
-    "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=1920&q=80",
-  lotus:
-    "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1920&q=80",
-  "tibetan-medicine":
-    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1920&q=80",
-  massage:
-    "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1920&q=80",
-  "yurt-night":
-    "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1920&q=80",
-  "chess-bender":
-    "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=1920&q=80",
-};
-
 interface Props {
   params: Promise<{ slug: string }>;
-}
-
-export function generateStaticParams() {
-  return tours.map((tour) => ({
-    slug: tour.slug,
-  }));
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -61,11 +34,9 @@ export default async function TourPage({ params }: Props) {
   }
 
   const relatedTours = tours.filter((t) => tour.related.includes(t.slug));
-  const heroImage =
-    imageMap[tour.slug] ||
-    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80";
+  const heroImage = imageMapLarge[tour.slug] || defaultImageLarge;
 
-  const whatsappMessage = encodeURIComponent(
+  const maxMessage = encodeURIComponent(
     `Здравствуйте, Зурган! Хочу забронировать экскурсию "${tour.title}" на [Дата]. Количество человек: [N].`,
   );
 
@@ -103,7 +74,7 @@ export default async function TourPage({ params }: Props) {
 
           <div className={styles.heroActions}>
             <a
-              href={`https://wa.me/79001234567?text=${whatsappMessage}`}
+              href={`https://max.ru/79001234567?text=${maxMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.ctaBtn}
@@ -111,7 +82,7 @@ export default async function TourPage({ params }: Props) {
               Забронировать →
             </a>
             <a
-              href={`https://wa.me/79001234567?text=${whatsappMessage}`}
+              href={`https://max.ru/79001234567?text=${maxMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.ctaBtnSecondary}
@@ -241,7 +212,7 @@ export default async function TourPage({ params }: Props) {
           </p>
           <div className={styles.ctaActions}>
             <a
-              href={`https://wa.me/79001234567?text=${whatsappMessage}`}
+              href={`https://max.ru/79001234567?text=${maxMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.ctaBtnLarge}
@@ -249,7 +220,7 @@ export default async function TourPage({ params }: Props) {
               Забронировать экскурсию
             </a>
             <a
-              href={`https://wa.me/79001234567?text=${whatsappMessage}`}
+              href={`https://max.ru/79001234567?text=${maxMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.ctaBtnSecondaryLarge}
@@ -266,8 +237,7 @@ export default async function TourPage({ params }: Props) {
             <div className={styles.relatedGrid}>
               {relatedTours.map((related) => {
                 const relatedImage =
-                  imageMap[related.slug] ||
-                  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80";
+                  imageMapSmall[related.slug] || defaultImageSmall;
                 return (
                   <Link
                     href={`/tour/${related.slug}`}

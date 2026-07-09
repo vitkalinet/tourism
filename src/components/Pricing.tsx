@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useInView } from "@/hooks/useInView";
 import styles from "./Pricing.module.scss";
 
 const plans = [
@@ -41,7 +41,7 @@ const plans = [
     name: "Выездной тур",
     price: "от 8 000 ₽",
     period: "за человека",
-    desc: "Многodneвный маршрут с проживанием",
+    desc: "Многодневный маршрут с проживанием",
     features: [
       "2–4 дня путешествия",
       "Проживание в юрте/отеле",
@@ -57,27 +57,7 @@ const plans = [
 ];
 
 export default function Pricing() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useInView<HTMLElement>(styles.visible, 0.1);
 
   return (
     <section ref={sectionRef} id="pricing" className={styles.section}>
@@ -86,14 +66,20 @@ export default function Pricing() {
           <span className={styles.sectionTag}>Стоимость</span>
           <h2 className={styles.sectionTitle}>Форматы и цены</h2>
           <p className={styles.sectionDesc}>
-            Выберите подходящий формат — от короткой экскурсии до многодневого путешествия
+            Выберите подходящий формат — от короткой экскурсии до многодневого
+            путешествия
           </p>
         </div>
 
         <div className={styles.grid}>
           {plans.map((plan, index) => (
-            <div key={index} className={`${styles.card} ${plan.popular ? styles.popular : ""}`}>
-              {plan.popular && <div className={styles.popularBadge}>Популярный</div>}
+            <div
+              key={index}
+              className={`${styles.card} ${plan.popular ? styles.popular : ""}`}
+            >
+              {plan.popular && (
+                <div className={styles.popularBadge}>Популярный</div>
+              )}
               <div className={styles.cardHeader}>
                 <h3 className={styles.cardName}>{plan.name}</h3>
                 <div className={styles.cardPriceBlock}>
@@ -110,7 +96,11 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a href="#contacts" className={styles.cardBtn} style={{ background: plan.gradient }}>
+              <a
+                href="#contacts"
+                className={styles.cardBtn}
+                style={{ background: plan.gradient }}
+              >
                 {plan.cta}
               </a>
             </div>

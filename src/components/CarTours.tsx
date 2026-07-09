@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useInView } from "@/hooks/useInView";
 import styles from "./CarTours.module.scss";
 
 const tours = [
@@ -25,36 +25,19 @@ const tours = [
 ];
 
 export default function CarTours() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useInView<HTMLElement>(styles.visible, 0.1);
 
   return (
     <section ref={sectionRef} id="car-tours" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
           <span className={styles.sectionTag}>Выездные туры</span>
-          <h2 className={styles.sectionTitle}>Автомобильные туры и мероприятия</h2>
+          <h2 className={styles.sectionTitle}>
+            Автомобильные туры и мероприятия
+          </h2>
           <p className={styles.sectionDesc}>
-            Многodneвные маршруты с трансфером, проживанием и полным погружением в жизнь степи
+            Многодневные маршруты с трансфером, проживанием и полным погружением
+            в жизнь степи
           </p>
         </div>
 
@@ -62,7 +45,10 @@ export default function CarTours() {
           {tours.map((tour, index) => (
             <div key={index} className={styles.card}>
               <div className={styles.cardVisual}>
-                <div className={styles.cardGradient} style={{ background: tour.gradient }}>
+                <div
+                  className={styles.cardGradient}
+                  style={{ background: tour.gradient }}
+                >
                   <span className={styles.cardIcon}>{tour.icon}</span>
                 </div>
               </div>

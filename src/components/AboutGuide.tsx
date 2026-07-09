@@ -1,30 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useInView } from "@/hooks/useInView";
 import styles from "./AboutGuide.module.scss";
 
 export default function AboutGuide() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 },
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useInView<HTMLElement>(styles.visible, 0.15);
 
   const accreditations = [
     "Золотая обитель Будды Шакьямуни",
