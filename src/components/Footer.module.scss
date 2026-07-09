@@ -1,0 +1,85 @@
+.footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+}
+
+.footerLogo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.footerLogoMark {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--gold);
+  background: rgba(201,168,76,0.06);
+}
+
+.footerLogoText {
+  font-family: var(--font-unbounded), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+}
+
+.footerTagline {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  color: var(--text2);
+  font-size: 1rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.footerLinks a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--gold);
+  }
+}
+
+.footerLink {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--gold2);
+    text-decoration: underline;
+  }
+}
+
+.footerCopy {
+  font-size: 0.75rem;
+  color: rgba(160,152,136,0.5);
+  letter-spacing: 0.04em;
+}
