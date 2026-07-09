@@ -1,6 +1,6 @@
-# Калмыкия Тур
+# Зурган — Ваш гид по Калмыкии
 
-Эксклюзивные экскурсии и туры по Республике Калмыкия — единственному региону в Европе с буддийской культурой и кочевыми традициями.
+Эксклюзивные экскурсии и авторские туры по Республике Калмыкия — единственному региону в Европе с буддийской культурой и кочевыми традициями.
 
 ## 🌟 Экскурсии
 
@@ -22,8 +22,8 @@
 - **Next.js 16** — React-фреймворк с App Router
 - **TypeScript** — типизация кода
 - **Tailwind CSS 4** — утилитарные стили
-- **SCSS** — модульные стили компонентов
-- **Anime.js** — анимации
+- **SCSS Modules** — модульные стили компонентов
+- **Anime.js** — анимации (для legacy-компонентов)
 
 ## 🚀 Запуск
 
@@ -46,26 +46,42 @@ npm run start
 ```
 src/
 ├── app/
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
+│   ├── globals.css          # Глобальные стили и CSS переменные
+│   ├── layout.tsx           # Корневой лейаут с шрифтами
+│   ├── page.tsx             # Главная страница
+│   └── tour/
+│       └── [slug]/
+│           ├── page.tsx     # Динамическая страница экскурсии
+│           ├── not-found.tsx # Страница 404
+│           └── TourPage.module.scss
 ├── components/
-│   ├── Navigation.tsx
-│   ├── HeroSection.tsx
-│   ├── TourCards.tsx
-│   ├── AboutSection.tsx
-│   ├── BookingForm.tsx
-│   └── Footer.tsx
+│   ├── Navigation.tsx       # Навигационное меню (мобильное)
+│   ├── Navigation.module.scss
+│   ├── HeroSection.tsx      # Hero-блок с анимациями
+│   ├── HeroSection.module.scss
+│   ├── AboutGuide.tsx       # Блок о гиде Зургане
+│   ├── AboutGuide.module.scss
+│   ├── Advantages.tsx       # Преимущества (6 карточек)
+│   ├── Advantages.module.scss
+│   ├── TourCards.tsx        # Каталог экскурсий с фильтрами
+│   ├── TourCards.module.scss
+│   ├── CarTours.tsx         # Автомобильные туры
+│   ├── CarTours.module.scss
+│   ├── Pricing.tsx          # Тарифы и цены
+│   ├── Pricing.module.scss
+│   ├── Contacts.tsx         # Контакты и форма заявки
+│   ├── Contacts.module.scss
+│   └── Footer.tsx           # Подвал сайта
 └── data/
-    └── tours.ts
+    └── tours.ts             # Данные всех экскурсий
 ```
 
 ## 🎨 Дизайн
 
 - **Цветовая палитра**: тёмный фон, золотые акценты, песочные и бирюзовые оттенки
 - **Шрифты**: Cormorant Garamond (заголовки), Geologica (текст), Unbounded (акценты)
-- **Анимации**: плавные переходы с использованием anime.js
+- **Анимации**: плавные появления при скролле (Intersection Observer)
 
 ---
 
-© 2026 Калмыкия Тур. Путешествия с уважением к культуре и природе.
+© 2026 Зурган. Путешествия с уважением к культуре и природе.

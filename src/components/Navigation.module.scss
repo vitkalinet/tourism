@@ -3,30 +3,167 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 100;
+  padding: 1.2rem 2rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  background: rgba(10, 12, 15, 0.8);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
+  justify-content: space-between;
+  transition: all 0.4s ease;
+}
 
-  &.scrolled {
-    padding: 0.75rem 2rem;
-    background: rgba(10, 12, 15, 0.95);
-    border-bottom-color: var(--border);
-  }
+.nav.scrolled {
+  background: rgba(11, 25, 41, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.8rem 2rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .navLogo {
-  font-family: var(--font-unbounded), sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--gold2);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   text-decoration: none;
-  letter-spacing: 0.05em;
+  z-index: 101;
+}
+
+.navLogoSymbol {
+  font-size: 1.4rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.navLogoText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--text);
+}
+
+.navLogoDot {
+  color: var(--gold);
+}
+
+.navDesktop {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navLink {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: var(--gold);
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+.navWhatsApp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: #25d366;
+  text-decoration: none;
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  padding: 0.5rem 1.2rem;
+  border-radius: 100px;
+  transition: all 0.3s;
+
+  &:hover {
+    background: rgba(37, 211, 102, 0.1);
+    border-color: #25d366;
+  }
+}
+
+.whatsappIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Mobile hamburger */
+.navMobileBtn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 101;
+}
+
+.navMobileBtnLine {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: all 0.3s ease;
+  border-radius: 1px;
+
+  &.open:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 5px);
+  }
+  &.open:nth-child(2) {
+    opacity: 0;
+  }
+  &.open:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -5px);
+  }
+}
+
+/* Mobile menu */
+.navMobile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 25, 41, 0.98);
+  backdrop-filter: blur(30px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.navMobileLink {
+  font-family: var(--font-cormorant), serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
   transition: color 0.3s;
 
   &:hover {
@@ -34,36 +171,45 @@
   }
 }
 
-.navActions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.navHomeBtn {
+.navMobileWhatsApp {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  color: var(--text);
-  background: transparent;
-  border: 1px solid var(--border);
-  padding: 0.5rem 1.25rem;
-  border-radius: 100px;
+  gap: 0.6rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #25d366;
   text-decoration: none;
-  font-family: var(--font-geologica), sans-serif;
-  font-size: 0.85rem;
-  transition: all 0.3s;
-
-  &:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(201, 168, 76, 0.1);
-  }
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  padding: 0.8rem 2rem;
+  border-radius: 100px;
+  margin-top: 1rem;
 }
 
-@media (max-width: 640px) {
-  .navHomeBtn {
-    padding: 0.4rem 1rem;
-    font-size: 0.8rem;
+.mobileWhatsappIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav {
+    padding: 1rem 1.2rem;
+  }
+
+  .nav.scrolled {
+    padding: 0.7rem 1.2rem;
+  }
+
+  .navDesktop {
+    display: none;
+  }
+
+  .navMobileBtn {
+    display: flex;
+  }
+
+  .navMobile {
+    display: flex;
   }
 }

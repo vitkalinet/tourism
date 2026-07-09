@@ -1,52 +1,87 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import anime from "animejs";
 import styles from "./Footer.module.scss";
 
 export default function Footer() {
-  const footerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    anime({
-      targets: footerRef.current,
-      opacity: [0, 1],
-      translateY: [20, 0],
-      delay: 1500,
-      duration: 800,
-      easing: "easeOutExpo",
-    });
-  }, []);
-
   return (
-    <footer ref={footerRef} className={styles.footer}>
-      <div className={styles.footerLogo}>
-        <div className={styles.footerLogoMark}>☸</div>
-        <div className={styles.footerLogoText}>КАЛМЫКИЯ ТУР</div>
-      </div>
-      <p className={styles.footerTagline}>
-        Экскурсии и туры по Республике Калмыкия — стране степей и буддизма
-      </p>
-      <div className={styles.footerLinks}>
-        <a href="#tours" className={styles.footerLink}>
-          Экскурсии
-        </a>
-        <a href="#booking" className={styles.footerLink}>
-          Бронирование
-        </a>
-        <a href="#about" className={styles.footerLink}>
-          О нас
-        </a>
-        <a
-          href="https://zurgan.ru"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Zurgan.ru
-        </a>
-      </div>
-      <div className={styles.footerCopy}>
-        © 2026 Калмыкия Тур. Путешествия с уважением к культуре и природе.
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.top}>
+          <div className={styles.brand}>
+            <div className={styles.logo}>
+              <span className={styles.logoSymbol}>☸</span>
+              <span className={styles.logoText}>
+                ЗУРГАН<span className={styles.logoDot}>.</span>
+              </span>
+            </div>
+            <p className={styles.tagline}>
+              Аттестованный гид по Калмыкии. С 2019 года.
+            </p>
+          </div>
+
+          <div className={styles.links}>
+            <div className={styles.linkGroup}>
+              <h4 className={styles.linkGroupTitle}>Навигация</h4>
+              <a href="#tours">Экскурсии</a>
+              <a href="#about">О гиде</a>
+              <a href="#advantages">Преимущества</a>
+              <a href="#pricing">Стоимость</a>
+              <a href="#contacts">Контакты</a>
+            </div>
+            <div className={styles.linkGroup}>
+              <h4 className={styles.linkGroupTitle}>Категории</h4>
+              <a href="#tours">Культура</a>
+              <a href="#tours">Природа</a>
+              <a href="#tours">Приключения</a>
+              <a href="#tours">Оздоровление</a>
+            </div>
+          </div>
+
+          <div className={styles.social}>
+            <h4 className={styles.linkGroupTitle}>Связаться</h4>
+            <div className={styles.socialLinks}>
+              <a
+                href="https://wa.me/79001234567"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                WhatsApp
+              </a>
+              <a
+                href="https://t.me/zurgan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                Telegram
+              </a>
+              <a
+                href="https://instagram.com/zurgan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                Instagram
+              </a>
+              <a
+                href="https://zurgan.ru"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                zurgan.ru
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.bottom}>
+          <p className={styles.copyright}>© 2026 Зурган. Все права защищены.</p>
+          <p className={styles.footnote}>
+            Путешествия с уважением к культуре и природе Калмыкии
+          </p>
+        </div>
       </div>
     </footer>
   );

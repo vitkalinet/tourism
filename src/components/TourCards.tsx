@@ -1,93 +1,121 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import anime from "animejs";
-import { tours } from "@/data/tours";
-import styles from "./PeopleCards.module.scss";
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { categories, getToursByCategory } from "@/data/tours";
+import styles from "./TourCards.module.scss";
+
+const imageMap: Record<string, string> = {
+  khurul:
+    "https://images.unsplash.com/photo-1545378892-f16a1c3dfa1d?w=600&q=80",
+  "elista-walk":
+    "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?w=600&q=80",
+  topol:
+    "https://images.unsplash.com/photo-1501854140748-950c1eb73586?w=600&q=80",
+  "palmov-museum":
+    "https://images.unsplash.com/photo-1586348943529-beaae6c28fd9?w=600&q=80",
+  "dunes-saigas":
+    "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=80",
+  "nomads-camels":
+    "https://images.unsplash.com/photo-1553678877-868445459655?w=600&q=80",
+  "horse-riding":
+    "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=600&q=80",
+  lotus: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80",
+  "tibetan-medicine":
+    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80",
+  massage:
+    "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
+  "yurt-night":
+    "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80",
+  "chess-bender":
+    "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=600&q=80",
+};
 
 export default function TourCards() {
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    anime({
-      targets: `.${styles.card}`,
-      opacity: [0, 1],
-      translateY: [80, 0],
-      scale: [0.9, 1],
-      delay: anime.stagger(200, { start: 300 }),
-      duration: 1200,
-      easing: "easeOutExpo",
-    });
-
-    anime({
-      targets: `.${styles.cardBanner}`,
-      translateY: [20, 0],
-      opacity: [0, 1],
-      delay: anime.stagger(150, { start: 500 }),
-      duration: 1000,
-      easing: "easeOutQuad",
-    });
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const cards = document.querySelectorAll(`.${styles.card}`);
-      const mouseX = e.clientX / window.innerWidth - 0.5;
-      const mouseY = e.clientY / window.innerHeight - 0.5;
-
-      cards.forEach((card, index) => {
-        const factor = (index % 2 === 0 ? 1 : -1) * 8;
-        anime({
-          targets: card,
-          translateX: mouseX * factor,
-          translateY: mouseY * factor,
-          duration: 800,
-          easing: "easeOutQuad",
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.visible);
+            observer.disconnect();
+          }
         });
-      });
-    };
+      },
+      { threshold: 0.1 },
+    );
 
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => document.removeEventListener("mousemove", handleMouseMove);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
-  return (
-    <section id="tours" className={styles.section}>
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionTag}>
-          Уникальные экскурсии и туры
-        </span>
-        <h2 className={styles.sectionTitle}>Откройте Калмыкию</h2>
-        <p className={styles.sectionDesc}>
-          Выберите приключение по душе — от духовных практик до степных походов
-        </p>
-      </div>
+  const filteredTours = getToursByCategory(activeCategory);
 
-      <div ref={cardsRef} className={styles.cardsGrid}>
-        {tours.map((tour) => (
-          <div key={tour.id} className={styles.card}>
-            <div className={styles.cardBanner}>
-              <div style={{ background: tour.gradient }} className={styles.cardBannerGradient}>
-                <span className={styles.cardIcon}>{tour.icon}</span>
+  return (
+    <section ref={sectionRef} id="tours" className={styles.section}>
+      <div className={styles.container}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionTag}>Каталог</span>
+          <h2 className={styles.sectionTitle}>Тематические экскурсии</h2>
+          <p className={styles.sectionDesc}>
+            12 уникальных маршрутов — от буддийских хурулов до степных
+            приключений
+          </p>
+        </div>
+
+        {/* Category filter */}
+        <div className={styles.filters}>
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              className={`${styles.filterBtn} ${activeCategory === cat.id ? styles.active : ""}`}
+              onClick={() => setActiveCategory(cat.id)}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Tour grid */}
+        <div className={styles.grid}>
+          {filteredTours.map((tour) => (
+            <Link
+              href={`/tour/${tour.slug}`}
+              key={tour.id}
+              className={styles.card}
+            >
+              <div className={styles.cardVisual}>
+                <img
+                  src={
+                    imageMap[tour.slug] ||
+                    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80"
+                  }
+                  alt={tour.title}
+                  className={styles.cardImg}
+                />
+                <div className={styles.cardOverlay}>
+                  <span className={styles.cardSeason}>{tour.season}</span>
+                </div>
               </div>
-              <div className={styles.cardBannerOverlay}></div>
-            </div>
-            <div className={styles.cardBody}>
-              <div className={styles.cardCategory}>{tour.categoryLabel}</div>
-              <div className={styles.cardName}>{tour.title}</div>
-              <div className={styles.cardNative}>{tour.subtitle}</div>
-              <div className={styles.cardTagline}>{tour.description.substring(0, 100)}...</div>
-              <div className={styles.cardMeta}>
-                <span className={styles.badge}>{tour.duration}</span>
-                <span className={styles.badge}>{tour.price}</span>
-                <span className={styles.badge}>{tour.season}</span>
+              <div className={styles.cardBody}>
+                <div className={styles.cardCategory}>{tour.categoryLabel}</div>
+                <h3 className={styles.cardTitle}>{tour.title}</h3>
+                <p className={styles.cardDesc}>{tour.description}</p>
+                <div className={styles.cardFooter}>
+                  <span className={styles.cardDuration}>{tour.duration}</span>
+                  <span className={styles.cardPrice}>{tour.price}</span>
+                  <span className={styles.cardArrow}>→</span>
+                </div>
               </div>
-              <div className={styles.cardHighlights}>
-                {tour.highlights.slice(0, 3).map((h, i) => (
-                  <span key={i} className={styles.highlightItem}>• {h}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

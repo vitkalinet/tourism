@@ -1,19 +1,27 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
+import AboutGuide from "@/components/AboutGuide";
+import Advantages from "@/components/Advantages";
 import TourCards from "@/components/TourCards";
-import BookingForm from "@/components/BookingForm";
-import AboutSection from "@/components/AboutSection";
+import CarTours from "@/components/CarTours";
+import Pricing from "@/components/Pricing";
+import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   return (
     <main>
       <Navigation />
       <HeroSection />
+      <AboutGuide />
+      <Advantages />
       <TourCards />
-      <AboutSection />
-      <BookingForm />
+      <CarTours />
+      <Pricing />
+      <Contacts />
       <Footer />
+      <FloatingWhatsApp />
     </main>
   );
 }
