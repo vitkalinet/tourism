@@ -25,7 +25,7 @@ export default function Navigation() {
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
       <Link href="/" className={styles.navLogo}>
-        <span className={styles.navLogoSymbol}>☸</span>
+        <span className={styles.navLogoSymbol}>@</span>
         <span className={styles.navLogoText}>
           ЗУРГАН<span className={styles.navLogoDot}>.</span>
         </span>
@@ -38,18 +38,16 @@ export default function Navigation() {
           </a>
         ))}
         <a
-          href="https://max.ru/79001234567"
+          href="https://max.ru/79962597786"
           target="_blank"
           rel="noopener noreferrer"
-          className={styles.navWhatsApp}
+          className={styles.navMax}
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className={styles.whatsappIcon}
-          >
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-          </svg>
+          <img
+            src="/Max_logo.svg"
+            alt="Зурган — гид по Калмыкии"
+            className={styles.MaxIcon}
+          />
           Max
         </a>
       </div>
@@ -82,7 +80,7 @@ export default function Navigation() {
           </a>
         ))}
         <a
-          href="https://max.ru/79001234567"
+          href="https://max.ru/79962597786"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.navMobileWhatsApp}

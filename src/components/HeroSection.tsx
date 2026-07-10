@@ -48,7 +48,7 @@ export default function HeroSection() {
     <section className={styles.hero}>
       <div className={styles.heroImage}>
         <img
-          src="https://images.putevka.com/trips/63287_56866_ex.jpg"
+          src="/images/63287.jpg"
           alt="Калмыкия — степи и закаты"
           className={styles.heroImg}
         />

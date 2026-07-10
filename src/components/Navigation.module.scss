@@ -56,7 +56,7 @@
   font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.03em;
-  color: var(--text2);
+  color: var(--terracotta-light);
   text-decoration: none;
   transition: color 0.3s;
   position: relative;
@@ -80,7 +80,7 @@
   }
 }
 
-.navWhatsApp {
+.navMax {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -88,7 +88,7 @@
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.03em;
-  color: var(--blue-light);
+  color: var(--terracotta-light);
   text-decoration: none;
   border: 1px solid rgba(42, 82, 152, 0.3);
   padding: 0.5rem 1.2rem;
@@ -101,7 +101,7 @@
   }
 }
 
-.whatsappIcon {
+.MaxIcon {
   width: 16px;
   height: 16px;
 }

@@ -29,7 +29,7 @@ export default function AboutGuide() {
           <div className={styles.photoBlock}>
             <div className={styles.photoFrame}>
               <img
-                src="https://static.tildacdn.com/tild6566-3464-4161-b565-363431626164/photo_2025-05-06_20-.jpg"
+                src="/images/photo.jpg"
                 alt="Зурган — гид по Калмыкии"
                 className={styles.photoImg}
               />
