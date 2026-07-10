@@ -1,8 +1,8 @@
 ﻿import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Literata, Inter } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const literata = Literata({
   subsets: ["cyrillic"],
   weight: ["300", "400", "600"],
   variable: "--font-cormorant",
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="ru" className={`${literata.variable} ${inter.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );
