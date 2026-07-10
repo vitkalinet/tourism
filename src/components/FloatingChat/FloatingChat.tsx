@@ -22,7 +22,7 @@ export default function FloatingChat() {
       className={`${styles.floatBtn} ${visible ? styles.visible : ""}`}
       aria-label="Написать в Max"
     >
-      <img src="/Max.svg" alt="#" className={styles.icon} />
+      <img src="/Max_logo.svg" alt="#" className={styles.icon} />
       <span className={styles.tooltip}>Написать в Max</span>
     </a>
   );
