@@ -21,14 +21,14 @@ export default function Contacts() {
 
         <div className={styles.content}>
           <div className={styles.contactCards}>
-            <a href="tel:+79001234567" className={styles.contactCard}>
+            <a href="tel:+79962597786" className={styles.contactCard}>
               <div className={styles.contactIcon}>📞</div>
               <h3 className={styles.contactName}>Позвонить</h3>
-              <p className={styles.contactValue}>+7 (900) 123-45-67</p>
+              <p className={styles.contactValue}>+7 (996) 259-77-86</p>
             </a>
 
             <a
-              href="https://max.ru/79001234567"
+              href="https://max.ru/79962597786"
               target="_blank"
               rel="noopener noreferrer"
               className={`${styles.contactCard} ${styles.whatsapp}`}
@@ -57,7 +57,7 @@ export default function Contacts() {
             >
               <div className={styles.contactIcon}>📷</div>
               <h3 className={styles.contactName}>Instagram</h3>
-              <p className={styles.contactValue}>@zurgan</p>
+              <p className={styles.contactValue}>@Zurgan</p>
             </a>
           </div>
 
