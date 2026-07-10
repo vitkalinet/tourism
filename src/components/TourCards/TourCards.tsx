@@ -47,11 +47,13 @@ export default function TourCards() {
               className={styles.card}
             >
               <div className={styles.cardVisual}>
-                <img
-                  src={imageMapSmall[tour.slug] || defaultImageSmall}
-                  alt={tour.title}
-                  className={styles.cardImg}
-                />
+                {(imageMapSmall[tour.slug] || defaultImageSmall) && (
+                  <img
+                    src={imageMapSmall[tour.slug] || defaultImageSmall}
+                    alt={tour.title}
+                    className={styles.cardImg}
+                  />
+                )}
                 <div className={styles.cardOverlay}>
                   <span className={styles.cardSeason}>{tour.season}</span>
                 </div>

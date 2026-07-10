@@ -7,7 +7,7 @@ import {
   defaultImageLarge,
   defaultImageSmall,
 } from "@/data/images";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import FloatingChat from "@/components/FloatingChat";
 import styles from "./TourPage.module.scss";
 
 interface Props {
@@ -42,11 +42,13 @@ export default async function TourPage({ params }: Props) {
 
   return (
     <div className={styles.page}>
-      <FloatingWhatsApp />
+      <FloatingChat />
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.heroBg}>
-          <img src={heroImage} alt={tour.title} className={styles.heroImg} />
+          {heroImage && (
+            <img src={heroImage} alt={tour.title} className={styles.heroImg} />
+          )}
         </div>
         <div className={styles.heroOverlay}></div>
         <div className={styles.heroContent}>
@@ -245,11 +247,13 @@ export default async function TourPage({ params }: Props) {
                     className={styles.relatedCard}
                   >
                     <div className={styles.relatedGradient}>
-                      <img
-                        src={relatedImage}
-                        alt={related.title}
-                        className={styles.relatedImg}
-                      />
+                      {relatedImage && (
+                        <img
+                          src={relatedImage}
+                          alt={related.title}
+                          className={styles.relatedImg}
+                        />
+                      )}
                     </div>
                     <div className={styles.relatedBody}>
                       <h3 className={styles.relatedTitle}>{related.title}</h3>

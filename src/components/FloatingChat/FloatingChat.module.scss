@@ -5,11 +5,11 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: var(--blue-light);
+ 
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(42, 82, 152, 0.4);
+ 
   z-index: 999;
   opacity: 0;
   transform: scale(0.5) translateY(20px);

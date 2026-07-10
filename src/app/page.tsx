@@ -7,7 +7,7 @@ import CarTours from "@/components/CarTours";
 import Pricing from "@/components/Pricing";
 import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import FloatingChat from "@/components/FloatingChat";
 
 export default function Home() {
   return (
@@ -21,7 +21,7 @@ export default function Home() {
       <Pricing />
       <Contacts />
       <Footer />
-      <FloatingWhatsApp />
+      <FloatingChat />
     </main>
   );
 }

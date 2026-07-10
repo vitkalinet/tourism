@@ -31,7 +31,7 @@ export default function Contacts() {
               href="https://max.ru/79962597786"
               target="_blank"
               rel="noopener noreferrer"
-              className={`${styles.contactCard} ${styles.whatsapp}`}
+              className={`${styles.contactCard} ${styles.chat}`}
             >
               <div className={styles.contactIcon}>💬</div>
               <h3 className={styles.contactName}>Max</h3>
